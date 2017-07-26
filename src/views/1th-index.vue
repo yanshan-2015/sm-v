@@ -31,7 +31,6 @@
       </man-women>
     </div>
 
-
     <!--<my-next>
       <p>下一步</p>
     </my-next>-->
@@ -60,7 +59,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .banner{
     position: relative;
     width: 100%;
