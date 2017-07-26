@@ -52,7 +52,10 @@ exports.cssLoaders = function (options) {
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
+    styl: generateLoaders('stylus'),
+    style: generateLoaders('style'),
+    //added
+    less: generateLoaders('px2rem', { remUnit: 75 })
   }
 }
 
@@ -69,3 +72,4 @@ exports.styleLoaders = function (options) {
   }
   return output
 }
+console.log(this.styleLoaders())

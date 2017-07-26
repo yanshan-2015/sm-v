@@ -37,7 +37,7 @@
 <style lang="less" scoped="">
   .head{
     position: relative;
-    height: 1.2rem;
+    height: 90px;
     width: 100%;
     background-color: #aaa;
     .left, .right{

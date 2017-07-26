@@ -61,6 +61,7 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
+      //added
       {
         test: require.resolve('jquery'),
         loader: 'expose-loader?$expose-loader?jQuery'
