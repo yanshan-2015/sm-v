@@ -46,6 +46,7 @@ exports.cssLoaders = function (options) {
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
+    style: generateLoaders('style'),
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
@@ -53,9 +54,6 @@ exports.cssLoaders = function (options) {
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus'),
-    style: generateLoaders('style'),
-    //added
-    less: generateLoaders('px2rem', { remUnit: 75 })
   }
 }
 
@@ -72,4 +70,3 @@ exports.styleLoaders = function (options) {
   }
   return output
 }
-console.log(this.styleLoaders())

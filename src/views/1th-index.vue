@@ -18,22 +18,25 @@
 
     <div class="choseBar">
       <man-women>
-        <div slot="man">
-          <img src="" alt="">
+        <h1 slot="title" class="title">请选择性别:</h1>
+        <div slot="man" class="man" @click="man()">
+          <img src="../assets/images/1-index-man.png" alt="">
           <i>男</i>
           <span></span>
         </div>
-        <div slot="women">
-          <img src="" alt="">
+        <div slot="women" class="women" @click="women()">
+          <img src="../assets/images/1-index-girl.png" alt="">
           <i>女</i>
           <span></span>
         </div>
       </man-women>
     </div>
 
-    <!--<my-next>
-      <p>下一步</p>
-    </my-next>-->
+    <div class="footer">
+      <my-next>
+       <router-link to="/shape">开始测试</router-link>
+      </my-next>
+    </div>
   </div>
 </template>
 
@@ -54,12 +57,18 @@
     methods: {
       back() {
         this.$router.back();
+      },
+      man(){
+        alert('这里要处理背景图切换')
+      },
+      women(){
+        alert('这里要处理背景图切换')
       }
     }
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .banner{
     position: relative;
     width: 100%;
@@ -71,19 +80,68 @@
     }
     .word{
       position: absolute;
-      bottom: -1.5rem;
-      padding: 0.4rem;
-      margin: 0 0.35rem;
+      bottom: -100px;
+      padding: 40px;
+      margin: 0 30px;
       background: rgba(244,244,244,0.6);
       p{
         text-indent: 2em;
         text-align: justify;
-        font-size: 0.34rem;
+        font-size: 24px;
         color: #5a6676;
       }
     }
   }
   .choseBar{
-    padding-top: 50px;
+    padding: 100px 70px 0;
+    .title{
+      padding-bottom: 20px;
+      font-size: 32px;
+      color: #5a6676;
+    }
+    img{
+      width: 60px;
+      height: 60px;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    i{
+      display: inline-block;
+      vertical-align: bottom;
+      font-style: normal;
+      font-size: 30px;
+      color: #5a6676;
+    }
+    span{
+      display: inline-block;
+      vertical-align: bottom;
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
+      border-radius: 50%;
+    }
+    .man{
+      span{
+        border: 2px solid #74a0ef;
+      }
+    }
+    .women{
+      margin-left: 78px;
+      span{
+        border: 2px solid #ef7474;
+      }
+    }
+  }
+  .footer{
+    width: 500px;
+    padding: 50px 0 90px;
+    margin: 0 auto;
+    div{
+      background: -webkit-linear-gradient(left, #75c7f0 , #74a0ef);
+      a{
+        font-size: 40px;
+        color: #f2f6f9;
+      }
+    }
   }
 </style>

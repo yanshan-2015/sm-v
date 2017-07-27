@@ -16,15 +16,16 @@
 
 <style lang="less" scoped>
   .nextButton{
-    height: 1.2rem;
+    height: 90px;
     margin: 0 auto;
     background-color: #222;
-    border-radius: 0.15rem;
-    p{
-      height: 1.2rem;
-      line-height: 1.2rem;
+    border-radius: 8px;
+    a{
+      display: block;
+      height: 90px;
+      line-height: 90px;
       text-align: center;
-      font-size: 0.48rem;
+      font-size: 36px;
       color: #d1d1d1;
     }
   }
