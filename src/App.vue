@@ -22,7 +22,7 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./assets/images/1-bg.png")no-repeat center;
+  background: url("./assets/1-bg.png")no-repeat center;
   background-size: cover;
 }
 </style>

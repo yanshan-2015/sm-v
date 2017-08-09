@@ -1,16 +1,8 @@
 <template>
   <div class="index">
-    <div class="headBar">
-      <my-header>
-        <div slot="left" class="left" @click="back()">
-          <img src="../assets/images/back.png" alt="back">
-        </div>
-        <p slot="mid" class="mid">{{title}}</p>
-      </my-header>
-    </div>
 
     <div class="banner">
-      <img src="../assets/images/1-index-pic.jpg" alt="banner">
+      <img src="../assets/1-index-pic.jpg" alt="banner">
       <div class="word">
         <p>我们一生大约有三分之一的时间是在床上度过，心理、生理和物理环境的共同作用会对睡眠的质量产生影响。好的睡眠从选择一款合适自己的床垫开始，输入您的数据进行测试，我们将帮您选择合适您的床垫。</p>
       </div>
@@ -19,13 +11,13 @@
     <div class="choseBar">
       <man-women>
         <h1 slot="title" class="title">请选择性别:</h1>
-        <div slot="man" class="man" @click="man()">
-          <img src="../assets/images/1-index-man.png" alt="">
+        <div slot="man" class="man" @click="man()" v-bind:class="{manBg: isManBg}">
+          <img src="../assets/1-index-man.png" alt="">
           <i>男</i>
           <span></span>
         </div>
-        <div slot="women" class="women" @click="women()">
-          <img src="../assets/images/1-index-girl.png" alt="">
+        <div slot="women" class="women" @click="women()" v-bind:class="{womenBg: isWomenBg}">
+          <img src="../assets/1-index-girl.png" alt="">
           <i>女</i>
           <span></span>
         </div>
@@ -34,7 +26,7 @@
 
     <div class="footer">
       <my-next>
-       <router-link to="/shape">开始测试</router-link>
+       <router-link to="/age">开始测试</router-link>
       </my-next>
     </div>
   </div>
@@ -42,16 +34,17 @@
 
 <script>
   import '@/less/common.less'
-  import MyHeader from '../components/Head.vue'
   import MyNext from '../components/NextButton.vue'
   import ManWomen from '../components/manAndwomen.vue'
 
   export default {
     name: 'Index',
-    components: { MyHeader,MyNext,ManWomen },
+    components: { MyNext,ManWomen },
     data(){
       return{
-        title: '慕斯睡眠测试系统'
+        title: '慕斯睡眠测试系统',
+        isManBg: true,
+        isWomenBg: true
       }
     },
     methods: {
@@ -132,16 +125,14 @@
       }
     }
   }
+
+  .manBg{
+
+  }
+  .womenBg{
+
+  }
   .footer{
-    width: 500px;
     padding: 50px 0 90px;
-    margin: 0 auto;
-    div{
-      background: -webkit-linear-gradient(left, #75c7f0 , #74a0ef);
-      a{
-        font-size: 40px;
-        color: #f2f6f9;
-      }
-    }
   }
 </style>

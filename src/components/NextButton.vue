@@ -16,17 +16,18 @@
 
 <style lang="less" scoped>
   .nextButton{
+    width: 500px;
     height: 90px;
     margin: 0 auto;
-    background-color: #222;
+    background: -webkit-linear-gradient(left, #75c7f0 , #74a0ef);
     border-radius: 8px;
     a{
       display: block;
       height: 90px;
       line-height: 90px;
       text-align: center;
-      font-size: 36px;
-      color: #d1d1d1;
+      font-size: 40px;
+      color: #f2f6f9;
     }
   }
 </style>
