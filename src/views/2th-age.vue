@@ -1,39 +1,79 @@
 <template>
-    <div class="age">
+    <div class="g-age">
 
       <MyLocalHead>
         <h1 slot="e-num">{{head.num}}</h1>
-        <p slot="e-cn">{{head.cn}}</p>
+        <h1 slot="e-cn">{{head.cn}}</h1>
         <p slot="e-en">{{head.en}}</p>
       </MyLocalHead>
 
-      <div class="bodyShape"></div>
+      <div class="g-input">
+        <my-input>
+          <label slot="str" for="age">{{inputAge.str}}：</label>
+          <input slot="input" type="number" id="age" v-model="inputAge.inputVal">
+          <span slot="unit">{{inputAge.unit}}</span>
+        </my-input>
+      </div>
 
       <MyLoDecoration></MyLoDecoration>
 
-      <div class="footer">
+      <MyLocalHead>
+        <h1 slot="e-num">{{head.numA}}</h1>
+        <h1 slot="e-cn">{{head.cnA}}</h1>
+        <p slot="e-en">{{head.enA}}</p>
+      </MyLocalHead>
+
+      <div class="g-word">
+        <p>测试方法：赤脚两腿并拢站直，背靠墙站立，从头顶到地面的高度即为身高。</p>
+      </div>
+
+      <div class="g-input">
+        <my-input>
+          <label slot="str" for="bodyH">{{inputBH.str}}：</label>
+          <input slot="input" type="number" id="bodyH" v-model="inputBH.inputVal">
+          <span slot="unit">{{inputBH.unit}}</span>
+        </my-input>
+      </div>
+
+      <div class="g-footer">
         <MyNextBtn>
           <router-link to="/weight">下一步</router-link>
         </MyNextBtn>
       </div>
+
     </div>
 </template>
 
 <script>
   import MyNextBtn from '../components/NextButton.vue'
   import MyLocalHead from '../components/localNumHead.vue'
+  import MyInput from '../components/input.vue'
   import MyLoDecoration from '../components/localDecoration.vue'
     export default {
         name: '',
-        components: { MyNextBtn, MyLocalHead, MyLoDecoration },
+        components: { MyNextBtn, MyLocalHead, MyInput, MyLoDecoration },
         data() {
             return {
               title: '慕斯睡眠测试系统',
               head: {
                 num: '01',
                 cn: '年龄',
-                en: 'Age'
-              }
+                en: 'Age',
+                numA: '02',
+                cnA: '身高',
+                enA: 'Height'
+              },
+              inputAge:{
+                str: '年龄',
+                inputVal: '',
+                unit: '岁'
+              },
+              inputBH:{
+                str: '身高',
+                inputVal: '',
+                unit: 'cm'
+              },
+
             }
         },
       methods: {
@@ -45,14 +85,27 @@
 </script>
 
 <style lang="less" scoped>
-  .bodyShape{
-    height: 560px;
-    margin-top: 20px;
-    background-color: #eee;
+  .g-age{
+    background: url("../assets/3-body.png")no-repeat 94% 140px;
+    background-size: 310px auto;
   }
-  .footer{
-    padding: 50px 0 90px;
-    background: url("../assets/1-index-girl.png");
+  .g-input{
+    width: 48%;
+    margin-top: 39px;
+    margin-left: 30px;
   }
-
+  .g-word{
+    width: 50%;
+    margin: 100px 0 50px 30px;
+    text-align: justify;
+    line-height: 46px;
+    font-size: 30px;
+    color: #8fa0af;
+  }
+  .g-decoration {
+    padding: 40px 30px 0;
+  }
+  .g-footer{
+    padding: 200px 0 90px;
+  }
 </style>

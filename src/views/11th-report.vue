@@ -1,8 +1,8 @@
 <template>
-  <div class="hipH">
+  <div class="g-hipH">
     <MyLocalHead>
       <h1 slot="e-num">{{head.num}}</h1>
-      <p slot="e-cn">{{head.cn}}</p>
+      <h1 slot="e-cn">{{head.cn}}</h1>
       <p slot="e-en">{{head.en}}</p>
     </MyLocalHead>
 

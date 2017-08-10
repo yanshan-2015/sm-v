@@ -5,13 +5,13 @@
 </template>
 
 <script>
-  import '@/less/common.less'
   export default {
     name: 'app'
   }
 </script>
 
 <style>
+  @import "less/common.less";
 #app {
   position: absolute;
   top: 0;

@@ -16,7 +16,6 @@
 
 <style lang="less" scoped>
   .g-decoration{
-    padding: 50px 40px 0;
     p{
       width: 296px;
       height: 40px;

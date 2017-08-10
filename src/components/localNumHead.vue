@@ -42,9 +42,12 @@
       margin-left: 30px;
       padding-top: 32px;
       color: #8795a3;
+      h1{
+        font-size: 34px;
+      }
       p{
         line-height: 48px;
-        font-size: 34px;
+        font-size: 28px;
       }
     }
   }
