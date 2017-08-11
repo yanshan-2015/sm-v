@@ -1,5 +1,9 @@
 <template>
-  <div class="index">
+  <div class="g-index">
+
+    <div class="g-history">
+      <router-link to="/history"><img src="../assets/history.png" alt="historyImg"></router-link>
+    </div>
 
     <div class="banner">
       <img src="../assets/1-index-pic.jpg" alt="banner">
@@ -11,15 +15,15 @@
     <div class="choseBar">
       <man-women>
         <h1 slot="title" class="title">请选择性别:</h1>
-        <div slot="man" class="man" @click="man()" v-bind:class="{manBg: isManBg}">
+        <div slot="man" class="man" @click="man()" >
           <img src="../assets/1-index-man.png" alt="">
           <i>男</i>
-          <span></span>
+          <span v-bind:class="{manBg: bgM}"></span>
         </div>
-        <div slot="women" class="women" @click="women()" v-bind:class="{womenBg: isWomenBg}">
+        <div slot="women" class="women" @click="women()" >
           <img src="../assets/1-index-girl.png" alt="">
           <i>女</i>
-          <span></span>
+          <span v-bind:class="{womenBg: !bgM}"></span>
         </div>
       </man-women>
     </div>
@@ -43,8 +47,7 @@
     data(){
       return{
         title: '慕斯睡眠测试系统',
-        isManBg: true,
-        isWomenBg: true
+        bgM: true,
       }
     },
     methods: {
@@ -52,16 +55,31 @@
         this.$router.back();
       },
       man(){
-        alert('这里要处理背景图切换')
+        this.bgM = !this.bgM;
       },
       women(){
-        alert('这里要处理背景图切换')
+        this.bgM = !this.bgM
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
+  .g-history{
+    position: absolute;
+    z-index: 100;
+    top: 250px;
+    right: 0;
+    a{
+      display: block;
+      img{
+        width: 100px;
+        height: 62px;
+        display: block;
+        vertical-align: middle;
+      }
+    }
+  }
   .banner{
     position: relative;
     width: 100%;
@@ -127,10 +145,12 @@
   }
 
   .manBg{
-
+    background: url("../assets/1-index-circle1.png");
+    background-size: 30px 30px;
   }
   .womenBg{
-
+    background: url("../assets/1-index-circle2.png");
+    background-size: 30px 30px;
   }
   .footer{
     padding: 50px 0 90px;

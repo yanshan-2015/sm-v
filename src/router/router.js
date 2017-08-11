@@ -59,6 +59,11 @@ export default new Router({
       path: '/report',
       name: 'report',
       component: require('../views/11th-report.vue')
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: require('../views/12th-history.vue')
     }
   ]
 })

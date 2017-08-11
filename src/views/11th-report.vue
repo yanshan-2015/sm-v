@@ -8,9 +8,9 @@
 
     <MyLoDecoration></MyLoDecoration>
 
-    <div class="footer">
+    <div class="g-footer">
       <MyNextBtn>
-        <router-link to="/report">下一步</router-link>
+        <router-link to="/">返回测试</router-link>
       </MyNextBtn>
     </div>
   </div>
@@ -42,7 +42,10 @@
 </script>
 
 <style lang="less" scoped>
-  .footer{
+  .g-decoration {
+    padding: 30px 30px 0;
+  }
+  .g-footer{
     padding: 50px 0 90px;
   }
 </style>
