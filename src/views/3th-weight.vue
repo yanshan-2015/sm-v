@@ -27,7 +27,7 @@
           <div class="g-input">
             <my-input>
               <label slot="str" for="weight">{{input.str}}：</label>
-              <input slot="input" type="number" id="weight" v-model="input.inputVal">
+              <input slot="input" type="number" id="weight" v-model.lazy="input.inputVal">
               <span slot="unit">{{input.unit}}</span>
             </my-input>
           </div>
@@ -46,7 +46,7 @@
           <li><img src="../assets/4-icon6.png" alt=""><span>过度饮酒后</span></li>
         </ul>
       </div>
-      <div class="g-footer">
+      <div class="g-footer" :class="{show: isShow}">
         <MyNextBtn>
           <router-link to="/shoulderW">下一步</router-link>
         </MyNextBtn>
@@ -59,12 +59,14 @@
   import MyLocalHead from '../components/localNumHead.vue'
   import MyInput from '../components/input.vue'
   import MyLoDecoration from '../components/localDecoration.vue'
+  import {weightC} from '../js/components/numRangeCheck'
   export default {
     name: '',
     components: { MyNextBtn, MyLocalHead, MyInput, MyLoDecoration },
       data() {
           return {
             title: '慕斯睡眠测试系统',
+            isShow: false,
             head: {
               num: '03',
               cn: '体重',
@@ -77,6 +79,19 @@
             }
           }
       },
+      watch:{
+        input:{
+          handler:function (val) {
+            if(!weightC(val.inputVal)){
+              this.isShow = false;
+              alert('体重超出【5~160】范围');
+            }else {
+              this.isShow = true;
+            }
+          },
+          deep: true
+        }
+      },
       methods: {
         back() {
           this.$router.back();
@@ -86,6 +101,9 @@
 </script>
 
 <style lang="less" scoped>
+  .show{
+    display: block !important;
+  }
   .g-warning{
     padding: 0 30px;
     h1{
@@ -186,6 +204,7 @@
     padding: 20px 30px 0;
   }
   .g-footer{
+    display: none;
     padding: 50px 0 90px;
   }
 </style>

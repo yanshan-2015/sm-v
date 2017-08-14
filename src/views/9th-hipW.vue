@@ -13,7 +13,7 @@
         <div class="g-input">
           <my-input>
             <label slot="str" for="hipW">{{input.str}}：</label>
-            <input slot="input" type="number" id="hipW" v-model="input.inputVal">
+            <input slot="input" type="number" id="hipW" v-model.lazy="input.inputVal">
             <span slot="unit">{{input.unit}}</span>
           </my-input>
         </div>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="g-footer">
+    <div class="g-footer" :class="{show: isShow}">
       <MyNextBtn>
         <router-link to="/hipH">下一步</router-link>
       </MyNextBtn>
@@ -39,12 +39,14 @@
   import MyLocalHead from '../components/localNumHead.vue'
   import MyInput from '../components/input.vue'
   import MyLoDecoration from '../components/localDecoration.vue'
+  import {hipWC} from '../js/components/numRangeCheck'
   export default {
     name: '',
     components: { MyNextBtn, MyLocalHead, MyInput, MyLoDecoration },
     data() {
       return {
         title: '慕斯睡眠测试系统',
+        isShow: false,
         head: {
           num: '09',
           cn: '臀宽',
@@ -57,6 +59,19 @@
         }
       }
     },
+    watch:{
+      input:{
+        handler:function (val) {
+          if(!hipWC(val.inputVal)){
+            this.isShow = false;
+            alert('腰高超出【25~60】范围');
+          }else {
+            this.isShow = true;
+          }
+        },
+        deep:true
+      }
+    },
     methods: {
       back() {
         this.$router.back();
@@ -66,6 +81,9 @@
 </script>
 
 <style lang="less" scoped>
+  .show{
+    display: block !important;
+  }
   .g-word{
     padding: 100px 0 0;
     overflow: hidden;
@@ -101,6 +119,7 @@
     padding: 30px 30px 0;
   }
   .g-footer{
+    display: none;
     padding: 350px 0 90px;
   }
 </style>

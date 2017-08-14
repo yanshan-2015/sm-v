@@ -15,24 +15,25 @@
     <div class="choseBar">
       <man-women>
         <h1 slot="title" class="title">请选择性别:</h1>
-        <div slot="man" class="man" @click="man()" >
+        <div slot="man" class="man" @click="manEvent()" >
           <img src="../assets/1-index-man.png" alt="">
           <i>男</i>
-          <span v-bind:class="{manBg: bgM}"></span>
+          <span :class="{manBg: man}"></span>
         </div>
-        <div slot="women" class="women" @click="women()" >
+        <div slot="women" class="women" @click="womenEvent()" >
           <img src="../assets/1-index-girl.png" alt="">
           <i>女</i>
-          <span v-bind:class="{womenBg: !bgM}"></span>
+          <span :class="{manBg: women}"></span>
         </div>
       </man-women>
     </div>
 
-    <div class="footer">
+    <div class="footer" :class="classObj">
       <my-next>
        <router-link to="/age">开始测试</router-link>
       </my-next>
     </div>
+
   </div>
 </template>
 
@@ -47,24 +48,37 @@
     data(){
       return{
         title: '慕斯睡眠测试系统',
-        bgM: true,
+        man: false,
+        women: false
+      }
+    },
+    computed: {
+      classObj: function () {
+        return {
+          show: this.man || this.women
+        }
       }
     },
     methods: {
       back() {
         this.$router.back();
       },
-      man(){
-        this.bgM = !this.bgM;
+      manEvent() {
+        this.man = true;
+        this.women = false;
       },
-      women(){
-        this.bgM = !this.bgM
+      womenEvent() {
+        this.women = true;
+        this.man = false;
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
+  .show{
+    display: block !important;
+  }
   .g-history{
     position: absolute;
     z-index: 100;
@@ -145,14 +159,15 @@
   }
 
   .manBg{
-    background: url("../assets/1-index-circle1.png");
-    background-size: 30px 30px;
+    background: url("../assets/1-index-circle1.png")no-repeat center;
+    background-size: 100% 100%;
   }
   .womenBg{
-    background: url("../assets/1-index-circle2.png");
-    background-size: 30px 30px;
+    background: url("../assets/1-index-circle2.png")no-repeat center;
+    background-size: 100% 100%;
   }
   .footer{
+    display: none;
     padding: 50px 0 90px;
   }
 </style>

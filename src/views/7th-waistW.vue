@@ -18,14 +18,14 @@
     <div class="g-input">
       <my-input>
         <label slot="str" for="waistW">{{input.str}}：</label>
-        <input slot="input" type="number" id="waistW" v-model="input.inputVal">
+        <input slot="input" type="number" id="waistW" v-model.lazy="input.inputVal">
         <span slot="unit">{{input.unit}}</span>
       </my-input>
     </div>
 
     <MyLoDecoration></MyLoDecoration>
 
-    <div class="g-footer">
+    <div class="g-footer" :class="{show: isShow}">
       <MyNextBtn>
         <router-link to="/waistH">下一步</router-link>
       </MyNextBtn>
@@ -38,12 +38,14 @@
   import MyLocalHead from '../components/localNumHead.vue'
   import MyInput from '../components/input.vue'
   import MyLoDecoration from '../components/localDecoration.vue'
+  import {waistLineW} from '../js/components/numRangeCheck'
   export default {
     name: '',
     components: { MyNextBtn, MyLocalHead, MyInput, MyLoDecoration },
     data() {
       return {
         title: '慕斯睡眠测试系统',
+        isShow: false,
         head: {
           num: '07',
           cn: '腰宽',
@@ -56,6 +58,19 @@
         }
       }
     },
+    watch:{
+      input:{
+        handler:function (val) {
+          if(!waistLineW(val.inputVal)){
+            this.isShow = false;
+            alert('腰宽超出【10~60】范围');
+          }else {
+            this.isShow = true;
+          }
+        },
+        deep:true
+      }
+    },
     methods: {
       back() {
         this.$router.back();
@@ -65,6 +80,9 @@
 </script>
 
 <style lang="less" scoped>
+  .show{
+    display: block !important;
+  }
   .g-word{
     padding: 100px 0 0;
     overflow: hidden;
@@ -97,6 +115,7 @@
     padding: 30px 30px 0;
   }
   .g-footer{
+    display: none;
     padding: 150px 0 90px;
   }
 </style>

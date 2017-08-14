@@ -16,14 +16,14 @@
     <div class="g-input">
       <my-input>
         <label slot="str" for="hipH">{{input.str}}：</label>
-        <input slot="input" type="number" id="hipH" v-model="input.inputVal">
+        <input slot="input" type="number" id="hipH" v-model.lazy="input.inputVal">
         <span slot="unit">{{input.unit}}</span>
       </my-input>
     </div>
 
     <MyLoDecoration></MyLoDecoration>
 
-    <div class="g-footer">
+    <div class="g-footer"  :class="{show: isShow}">
       <p @click="btn()">获取报告</p>
     </div>
   </div>
@@ -36,6 +36,7 @@
   import MyLogin from '../components/login.vue'
   import MyLoDecoration from '../components/localDecoration.vue'
   import Bus from '../js/bus'
+  import {hipHC} from '../js/components/numRangeCheck'
   export default {
     name: '',
     components: { MyNextBtn, MyLocalHead, MyInput, MyLogin, MyLoDecoration },
@@ -43,6 +44,7 @@
       return {
         display: true,
         title: '慕斯睡眠测试系统',
+        isShow: false,
         head: {
           num: '10',
           cn: '臀高',
@@ -53,6 +55,19 @@
           inputVal: '',
           unit: 'cm'
         }
+      }
+    },
+    watch:{
+      input:{
+        handler:function (val) {
+          if(!hipHC(val.inputVal)){
+            this.isShow = false;
+            alert('腰高超出【40~150】范围');
+          }else {
+            this.isShow = true;
+          }
+        },
+        deep:true
       }
     },
     methods: {
@@ -74,6 +89,9 @@
 </script>
 
 <style lang="less" scoped>
+  .show{
+    display: block !important;
+  }
   .active{
     display: none;
   }
@@ -98,6 +116,7 @@
     padding: 30px 30px 0;
   }
   .g-footer{
+    display: none;
     padding: 410px 0 90px;
     width: 100%;
     p{
