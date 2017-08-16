@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>慕思睡眠测试系统</title>
+  <link rel="stylesheet" href="loading.css">
+  <script src="jquery-1.11.3.min.js"></script>
+</head>
+<body>
+  <div id="bgCover">
+    <div id="loader">Load</div>
+  </div>
+  <script>
+    var code = getQueryString('code');
+    let params = {
+      code: code,
+      appId: 'wx879c920191311570',
+      appsecrect: 'b3b02a19a87826ee3d78340250df3daa',
+      //grant_type:'authorization_code'
+    };
+    $.ajax({
+      type:'GET',
+      //url:'https://api.weixin.qq.com/sns/oauth2/access_token',
+      //url:'http://zs.derucci.net:8821/deruccimid/antifake/getweiopenid',
+      url:'http://zs.derucci.net:8821/deruccimid/antifake/gettestweiopenid',
+      data: params,
+      dataType: 'jsonp',
+      jsonp: 'jsoncallback',
+      success: function (data) {
+        if(data.openid !== undefined){
+          location.href = 'http://derucci.net/t6/dist/index.html?openId='+data.openid
+        }else {
+          alert('发生错误,重新载入！');
+          location.href = 'http://derucci.net/t6/code/index.html';
+        }
+      }
+    });
+    function getQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+  </script>
+</body>
+</html>

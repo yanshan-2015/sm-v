@@ -82,9 +82,21 @@
         this.man = false;
       }
     },
+    created(){
+      let openid = getQueryString('openid');
+      localStorage.openID = openid ||'123';
+      function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+          return unescape(r[2]);
+        }
+        return null;
+      }
+    }
   }
 
-  localStorage.openID = '123'
+
 </script>
 
 <style lang="less" scoped>
@@ -165,7 +177,7 @@
     .women{
       margin-left: 78px;
       span{
-        border: 2px solid #ef7474;
+        border: 2px solid #74a0ef;//#ef7474;
       }
     }
   }

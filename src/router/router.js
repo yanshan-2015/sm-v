@@ -4,9 +4,14 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '*',
+      component: require('../views/1th-index.vue')
+    },
+    {
+      path: '/index',
       name: 'index',
       component: require('../views/1th-index.vue')
     },
