@@ -13,7 +13,7 @@
     <div class="g-input">
       <my-input>
         <label slot="str" for="waistH">{{input.str}}：</label>
-        <input slot="input" type="number" id="waistH" v-model.lazy="input.inputVal">
+        <input slot="input" type="number" placeholder="50~180" id="waistH" v-model.lazy="input.inputVal">
         <span slot="unit">{{input.unit}}</span>
       </my-input>
     </div>
@@ -61,6 +61,7 @@
             alert('腰高超出【50~180】范围');
           }else {
             this.isShow = true;
+            localStorage.waistH = val.inputVal;
           }
         },
         deep:true
@@ -79,6 +80,7 @@
     display: block !important;
   }
   .g-waistH{
+    padding-bottom: 370px;
     background: url("../assets/8-pic.png")no-repeat 93% 140px;
     background-size: 289px auto;
   }

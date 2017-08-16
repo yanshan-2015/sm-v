@@ -13,7 +13,7 @@
     <div class="g-input">
       <my-input>
         <label slot="str" for="shoulderH">{{input.str}}：</label>
-        <input slot="input" type="number" id="shoulderH" v-model.lazy="input.inputVal">
+        <input slot="input" type="number" placeholder="80~180" id="shoulderH" v-model.lazy="input.inputVal">
         <span slot="unit">{{input.unit}}</span>
       </my-input>
     </div>
@@ -58,9 +58,10 @@
         handler:function (val) {
           if(!shoulderHC(val.inputVal)){
             this.isShow = false;
-            alert('肩宽超出【80~180】范围');
+            alert('肩高超出【80~180】范围');
           }else {
             this.isShow = true;
+            localStorage.shoulderH = val.inputVal;
           }
         },
         deep:true
@@ -79,6 +80,7 @@
     display: block !important;
   }
   .g-shoulderH{
+    padding-bottom: 400px;
     background: url("../assets/5human.png")no-repeat 93% 140px;
     background-size: 289px auto;
   }

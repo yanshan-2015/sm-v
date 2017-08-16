@@ -27,7 +27,7 @@
           <div class="g-input">
             <my-input>
               <label slot="str" for="weight">{{input.str}}：</label>
-              <input slot="input" type="number" id="weight" v-model.lazy="input.inputVal">
+              <input slot="input" type="number" placeholder="5~160" id="weight" v-model.lazy="input.inputVal">
               <span slot="unit">{{input.unit}}</span>
             </my-input>
           </div>
@@ -87,6 +87,7 @@
               alert('体重超出【5~160】范围');
             }else {
               this.isShow = true;
+              localStorage.weight = val.inputVal;
             }
           },
           deep: true

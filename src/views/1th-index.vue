@@ -41,6 +41,7 @@
   import '@/less/common.less'
   import MyNext from '../components/NextButton.vue'
   import ManWomen from '../components/manAndwomen.vue'
+  import wx from 'weixin-js-sdk'
 
   export default {
     name: 'Index',
@@ -59,6 +60,15 @@
         }
       }
     },
+    watch:{
+      man:function (val) {
+        if(val === true){
+          localStorage.sex = '0';
+        }else {
+          localStorage.sex = '1';
+        }
+      }
+    },
     methods: {
       back() {
         this.$router.back();
@@ -71,8 +81,10 @@
         this.women = true;
         this.man = false;
       }
-    }
+    },
   }
+
+  localStorage.openID = '123'
 </script>
 
 <style lang="less" scoped>

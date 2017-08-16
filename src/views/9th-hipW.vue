@@ -13,7 +13,7 @@
         <div class="g-input">
           <my-input>
             <label slot="str" for="hipW">{{input.str}}：</label>
-            <input slot="input" type="number" id="hipW" v-model.lazy="input.inputVal">
+            <input slot="input" type="number" placeholder="25~60" id="hipW" v-model.lazy="input.inputVal">
             <span slot="unit">{{input.unit}}</span>
           </my-input>
         </div>
@@ -64,9 +64,10 @@
         handler:function (val) {
           if(!hipWC(val.inputVal)){
             this.isShow = false;
-            alert('腰高超出【25~60】范围');
+            alert('臀宽超出【25~60】范围');
           }else {
             this.isShow = true;
+            localStorage.hipW = val.inputVal;
           }
         },
         deep:true

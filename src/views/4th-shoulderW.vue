@@ -17,7 +17,7 @@
       <div class="g-input">
         <my-input>
           <label slot="str" for="shoulderW">{{input.str}}：</label>
-          <input slot="input" type="number" id="shoulderW" v-model.lazy="input.inputVal">
+          <input slot="input" type="number" placeholder="25~60" id="shoulderW" v-model.lazy="input.inputVal">
           <span slot="unit">{{input.unit}}</span>
         </my-input>
       </div>
@@ -65,6 +65,7 @@
               alert('肩宽超出【25~60】范围');
             }else {
               this.isShow = true;
+              localStorage.shoulderW = val.inputVal;
             }
           },
           deep:true

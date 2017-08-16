@@ -10,7 +10,7 @@
       <div class="g-input">
         <my-input>
           <label slot="str" for="age">{{inputAge.str}}：</label>
-          <input slot="input" type="number" id="age" v-model.lazy="inputAge.inputVal">
+          <input slot="input" type="number" placeholder="0~150" id="age" v-model.lazy="inputAge.inputVal">
           <span slot="unit">{{inputAge.unit}}</span>
         </my-input>
       </div>
@@ -30,7 +30,7 @@
       <div class="g-input">
         <my-input>
           <label slot="str" for="bodyH">{{inputH.str}}：</label>
-          <input slot="input" type="number" id="bodyH" v-model.lazy="inputH.inputVals">
+          <input slot="input" type="number" placeholder="110~230" id="bodyH" v-model.lazy="inputH.inputVals">
           <span slot="unit">{{inputH.unit}}</span>
         </my-input>
       </div>
@@ -93,6 +93,7 @@
               this.input1 = false;
             }else {
               this.input1 = true;
+              localStorage.age = val.inputVal;
             }
           },
           deep: true
@@ -104,6 +105,7 @@
               this.input2 = false;
             }else {
               this.input2 = true;
+              localStorage.bodyH = val.inputVals;
             }
           },
           deep:true
@@ -122,6 +124,7 @@
     display: block !important;
   }
   .g-age{
+    padding-bottom: 150px;
     background: url("../assets/3-body.png")no-repeat 94% 140px;
     background-size: 310px auto;
   }

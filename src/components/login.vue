@@ -6,15 +6,15 @@
         <ul>
           <li>
             <img src="../assets/8-icon1.png" alt="img">
-            <input type="text" placeholder="请填写姓名">
+            <input type="text" placeholder="请填写姓名" v-model.lazy="userName">
           </li>
           <li>
             <img src="../assets/8-icon2.png" alt="img">
-            <input type="tel" maxlength="11" placeholder="请输入手机号码">
+            <input type="tel" maxlength="11" placeholder="请输入手机号码" v-model.lazy="input">
           </li>
         </ul>
-        <div class="g-btn">
-          <router-link to="/report">确认</router-link>
+        <div class="g-btn" @click="goes()">
+          <p>确认</p>
         </div>
       </div>
     </div>
@@ -23,18 +23,79 @@
 <script>
   import Bus from '../js/bus'
     export default {
-        name: 'login',
-        props: ['data'],
-        data() {
-            return {
-
-            }
+      name: 'login',
+      props: ['data'],
+      data() {
+          return {
+            userName:'',
+            input: '',
+            go1: false,
+            go2: false
+          }
+      },
+      watch:{
+        userName:function (val) {
+          if(val === ''){
+            alert('姓名不能为空');
+            this.go1 = false;
+          }else {
+            localStorage.userName = val;
+            this.go1 = true;
+          }
         },
-        methods:{
-          closeCover(){
-            Bus.$emit('closeNow', this.data)
+        input:function (val) {
+          let phoneReg = /^1[34578]\d{9}$/;
+          if(phoneReg.test(val) !== true){
+            alert('请输入正确的电话');
+          }else {
+            localStorage.phone = val;
+            this.go2 = true;
           }
         }
+      },
+      methods:{
+        closeCover(){
+          Bus.$emit('closeNow', this.data)
+        },
+        goes(){
+          let param = {
+            Gender: localStorage.sex,   //性别
+            age: localStorage.age,    //年龄
+            Length: localStorage.bodyH,    //身高
+            Weight: localStorage.weight,    //
+            ShoulderWidth: localStorage.shoulderW,    //肩宽
+            ShoulderHeight: localStorage.shoulderH,   //肩高
+            SternumHeight: '123',    //胸高
+            SternumWidth: localStorage.waistlineW,   //腰围
+            WaistWidth: localStorage.waistW,   //腰宽
+            WaistHeight: localStorage.waistH,    //腰高
+            ButtocksHeight: localStorage.hipW,   //臀高
+            ButtocksWidth: localStorage.hipH,    //臀宽
+            userName: localStorage.userName, //姓名
+            tel: localStorage.phone,  //电话
+            OpenID: localStorage.openID,   //微信ID
+          };
+          if(this.go1 && this.go2 ){
+            this.$http.jsonp('http://121.42.26.227/Service.asmx/Insert_measure', {
+              jsonp: 'jsoncallback',
+              params: param,
+            }).then(function (data) {
+              if(data.status!==200){
+                alert('网络请求发生异常,请重试！');
+              }else {
+                if(data.ok === true){
+                  alert('数据已提交');
+                  this.$router.push({name:'report'})
+                }else {
+                  alert('发生异常,请冲洗提交')
+                }
+              }
+            }).catch(function (err) {
+               console.log(err)
+            });
+          }
+        },
+      }
     }
 </script>
 
@@ -126,8 +187,7 @@
       background-color: #aaa;
       border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px;
-      a{
-        display: block;
+      p{
         font-size: 36px;
         color: #555;
       }
