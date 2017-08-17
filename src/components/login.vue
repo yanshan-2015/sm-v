@@ -22,6 +22,7 @@
 
 <script>
   import Bus from '../js/bus'
+  import {Loading} from '../js/components/loading'
     export default {
       name: 'login',
       props: ['data'],
@@ -76,10 +77,14 @@
             OpenID: localStorage.openID,   //微信ID
           };
           if(this.go1 && this.go2 ){
+            let loading = new Loading();
+            loading.createEle();
+            loading.showEle();
             this.$http.jsonp('http://121.42.26.227/Service.asmx/Insert_measure', {
               jsonp: 'jsoncallback',
               params: param,
             }).then(function (data) {
+              loading.hideEle();
               if(data.status!==200){
                 alert('网络请求发生异常,请重试！');
               }else {
